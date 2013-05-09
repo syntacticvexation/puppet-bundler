@@ -5,8 +5,18 @@
 #
 # == Parameters
 #
-# Standard class parameters
-# Define the general class behaviour and customizations
+# [*dependencies_class*]
+#   The name of the class that installs dependencies and prerequisite
+#   resources needed by this module.
+#   Default is $bundler::dependencies which uses Example42 modules.
+#   Set to '' to not install any dependency (you must provide what's
+#   defined in graylog2/manifests/dependencies.pp in some way).
+#   Set directy the name of a custom class to manage there the dependencies
+#
+# [*provider*]
+#   The Puppet provider to use to install bundle package
+#   Default: gem
+#   Set to undef to leave Puppet decide
 #
 # [*my_class*]
 #   Name of a custom class to autoload to manage module's customizations
@@ -47,6 +57,8 @@
 #
 #
 class bundler (
+  $dependencies_class  = params_lookup( 'dependencies_class' ),
+  $provider            = params_lookup( 'provider' ),
   $my_class            = params_lookup( 'my_class' ),
   $version             = params_lookup( 'version' ),
   $absent              = params_lookup( 'absent' ),
@@ -64,10 +76,15 @@ class bundler (
   }
 
   ### Managed resources
+  if $bundler::dependencies_class != '' {
+    include $bundler::dependencies_class
+  }
+
   if ! defined(Package[$bundler::package]) {
     package { $bundler::package:
-      ensure  => $bundler::manage_package,
-      noop    => $bundler::bool_noops,
+      ensure   => $bundler::manage_package,
+      provider => $bundler::provider,
+      noop     => $bundler::bool_noops,
     }
   }
 

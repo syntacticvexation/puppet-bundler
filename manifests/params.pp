@@ -15,7 +15,8 @@
 class bundler::params {
 
   ### Application related parameters
-
+  $dependencies_class = 'bundler::dependencies'
+  $provider = 'gem'
   $package = $::operatingsystem ? {
     default => 'bundler',
   }
