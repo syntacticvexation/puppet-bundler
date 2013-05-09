@@ -115,7 +115,7 @@ $file_notify = $autorun ? {
   if $autorun == true {
     exec { "bundle_install_${name}":
       command     => 'bundle install',
-      cwd         => $path,
+      cwd         => $install_path,
       refreshonly => $refreshonly,
       creates     => $creates,
       onlyif      => $onlyif,

@@ -16,4 +16,10 @@ class bundler::dependencies {
       ensure   => present,
     }
   }
+
+  if ! defined(Package['ruby-devel']) {
+    package { 'ruby-devel':
+      ensure   => present,
+    }
+  }
 }

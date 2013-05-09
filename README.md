@@ -9,6 +9,8 @@ Official site: http://www.example42.com
 
 Official git repository: http://github.com/example42/puppet-bundler
 
+Module development sponsored by [AllOver.IO](http://www.allover.io)
+
 Released under the terms of Apache 2 License.
 
 This module requires the presence of Example42 Puppi module in your modulepath.
