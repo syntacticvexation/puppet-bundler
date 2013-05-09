@@ -11,15 +11,9 @@
 # Example42 modules set
 #
 class bundler::dependencies {
-  if ! defined(Package['rubygems']) {
-    package { 'rubygems':
-      ensure   => present,
-    }
-  }
 
-  if ! defined(Package['ruby-devel']) {
-    package { 'ruby-devel':
-      ensure   => present,
-    }
-  }
+  include ruby
+  include ruby::devel
+  include ruby::rubygems
+
 }

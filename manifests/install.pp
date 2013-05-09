@@ -90,7 +90,7 @@ define bundler::install (
   $owner            = 'root',
   $group            = 'root',
   $mode             = '0755',
-  $path             = '/bin:/sbin:/usr/bin:/usr/sbin',
+  $path             = '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
   $ensure           = 'present' ) {
 
   include bundler
