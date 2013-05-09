@@ -13,7 +13,7 @@
 #
 # == Parameters:
 #
-# [*path*]
+# [*install_path*]
 #   String. Required.
 #   Defines the directory path where to execute bunde install and
 #   eventually create the Gemfile
@@ -78,7 +78,7 @@
 # }
 #
 define bundler::install (
-  $path,
+  $install_path,
   $source           = undef,
   $content          = undef,
   $parameters       = '',
@@ -90,16 +90,19 @@ define bundler::install (
   $owner            = 'root',
   $group            = 'root',
   $mode             = '0755',
+  $path             = '/bin:/sbin:/usr/bin:/usr/sbin',
   $ensure           = 'present' ) {
 
-  $file_notify = $autorun ? {
+  include bundler
+
+$file_notify = $autorun ? {
     true => Exec["bundle_install_${name}"],
     default => undef,
   }
   if $content or $source {
     file { "Gemfile_${name}":
       ensure  => $ensure,
-      path    => "${path}/Gemfile",
+      path    => "${install_path}/Gemfile",
       mode    => $mode,
       owner   => $owner,
       group   => $group,
@@ -117,6 +120,7 @@ define bundler::install (
       creates     => $creates,
       onlyif      => $onlyif,
       unless      => $unless,
+      path        => $path,
     }
   }
 
