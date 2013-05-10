@@ -93,7 +93,7 @@ define bundler::install (
   $path             = '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
   $ensure           = 'present' ) {
 
-  include bundler
+  require bundler
 
 $file_notify = $autorun ? {
     true => Exec["bundle_install_${name}"],
