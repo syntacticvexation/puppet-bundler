@@ -95,7 +95,7 @@ define bundler::install (
 
   require bundler
 
-$file_notify = $autorun ? {
+  $file_notify = $autorun ? {
     true => Exec["bundle_install_${name}"],
     default => undef,
   }

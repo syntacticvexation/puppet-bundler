@@ -77,7 +77,7 @@ class bundler (
 
   ### Managed resources
   if $bundler::dependencies_class != '' {
-    include $bundler::dependencies_class
+    require $bundler::dependencies_class
   }
 
   if ! defined(Package[$bundler::package]) {
