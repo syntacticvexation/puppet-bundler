@@ -12,8 +12,8 @@
 #
 class bundler::dependencies {
 
-  include ruby
-  include ruby::devel
-  include ruby::rubygems
+  require ruby
+  require ruby::devel
+  require ruby::rubygems
 
 }
