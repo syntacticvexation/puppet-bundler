@@ -114,7 +114,7 @@ define bundler::install (
 
   if $autorun == true {
     exec { "bundle_install_${name}":
-      command     => 'bundle install',
+      command     => "bundle install ${parameters}",
       cwd         => $install_path,
       refreshonly => $refreshonly,
       creates     => $creates,
