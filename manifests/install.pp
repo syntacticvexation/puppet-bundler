@@ -83,7 +83,7 @@ define bundler::install (
   $content          = undef,
   $parameters       = '',
   $autorun          = true,
-  $refreshonly      = true,
+  $refreshonly      = false,
   $creates          = undef,
   $onlyif           = undef,
   $unless           = undef,
