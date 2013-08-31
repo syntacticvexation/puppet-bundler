@@ -25,6 +25,6 @@ class bundler::params {
   $my_class = ''
   $version = 'present'
   $absent = false
-  $noops = false
+  $noops = undef
 
 }
