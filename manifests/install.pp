@@ -119,6 +119,7 @@ define bundler::install (
       onlyif      => $onlyif,
       unless      => $unless,
       path        => $path,
+      user        => $owner,
     }
   }
 
