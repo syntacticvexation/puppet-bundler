@@ -91,6 +91,7 @@ define bundler::install (
   $group            = 'root',
   $mode             = '0755',
   $path             = '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
+  $timeout          = 300,
   $ensure           = 'present' ) {
 
     $file_notify = $autorun ? {
@@ -119,6 +120,7 @@ define bundler::install (
       onlyif      => $onlyif,
       unless      => $unless,
       path        => $path,
+      timeout     => $timeout,
       user        => $owner,
     }
   }
